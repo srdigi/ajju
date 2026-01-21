@@ -45,11 +45,17 @@ background-size:cover;background-position:center;
 display:flex;align-items:center;justify-content:center;color:#fff;
 }
 .container{max-width:420px;width:100%;padding:20px;text-align:center;}
-.title{font-size:28px;font-weight:800;margin-bottom:15px;}
-.profile{
+.logo{
 width:110px;height:110px;border-radius:50%;
-border:4px solid #00ff4c;margin:0 auto 10px;
+border:4px solid #00ff4c;
+margin:0 auto 12px;
+box-shadow:0 0 15px rgba(0,255,76,0.9);
+overflow:hidden;
 }
+.logo img{
+width:100%;height:100%;object-fit:contain;background:#000;
+}
+.title{font-size:28px;font-weight:800;margin-bottom:10px;}
 .count{font-size:46px;font-weight:900;color:#00ff4c;}
 .list{text-align:left;margin:20px 0;font-size:16px;}
 .check{color:#00ff4c;font-weight:bold;}
@@ -66,6 +72,11 @@ animation:pulse 1.5s infinite;
 50%{transform:scale(1.05);}
 100%{transform:scale(1);}
 }
+.timer{
+font-size:14px;
+margin-top:10px;
+opacity:0.95;
+}
 .footer{margin-top:20px;font-size:18px;font-weight:700;}
 </style>
 </head>
@@ -73,8 +84,14 @@ animation:pulse 1.5s infinite;
 <body>
 
 <div class="container">
+
+<!-- LOGO -->
+<div class="logo">
+    <!-- apna logo file ka naam yaha daalo -->
+    <img src="logo.png" alt="Ajju Saxena Logo">
+</div>
+
 <div class="title">Ajju Saxena™</div>
-<div class="profile"></div>
 
 <div class="count">45</div>
 
@@ -91,9 +108,16 @@ animation:pulse 1.5s infinite;
 SUBSCRIBE AJJU SAXENA™
 </a>
 
+<!-- COUNTDOWN -->
+<div class="timer">
+FREE JOINING ENDS IN… 
+<span id="countdown" style="color:#00ff4c;font-weight:bold;">05:00</span>
+</div>
+
 <div class="footer">
 99% Right Accuracy ke sath Best Result
 </div>
+
 </div>
 
 <!-- SUBSCRIBE EVENT + BOT PROTECTION -->
@@ -104,6 +128,21 @@ document.getElementById("joinTelegram").addEventListener("click", function () {
     clicked = true;
     fbq('track','Subscribe');
 });
+</script>
+
+<!-- COUNTDOWN SCRIPT -->
+<script>
+let time = 300; // 5 minutes (seconds)
+const countdownEl = document.getElementById("countdown");
+
+setInterval(() => {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    countdownEl.textContent =
+        String(minutes).padStart(2,'0') + ":" +
+        String(seconds).padStart(2,'0');
+    if(time > 0) time--;
+}, 1000);
 </script>
 
 </body>
